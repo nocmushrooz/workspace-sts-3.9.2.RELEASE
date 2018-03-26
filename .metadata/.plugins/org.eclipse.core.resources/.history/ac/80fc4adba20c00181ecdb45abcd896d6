@@ -1,0 +1,83 @@
+package com.fdmgroup.demos.springmvc;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+
+import javax.servlet.http.HttpSession;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.apache.commons.*;
+import com.fdmgroup.User.UserObj;
+
+
+@Controller
+@Scope("session")
+public class DemoController {
+	
+	@RequestMapping(value="/")
+	public String indexPage(Model model, HttpSession session){
+		if(session.getAttribute("usernames") != null) {
+			return "view";
+		};
+	
+		return "index";
+	}
+
+	@RequestMapping(value="/login", method=POST)
+	public String homeHandler(Model model){
+		UserObj user = new UserObj();
+		model.addAttribute("userObj", user);
+		return "loginPage";
+	}
+
+	@RequestMapping(value="/submit", method=POST)
+	public String submitHandler(Model model, UserObj user, HttpSession session) throws UnsupportedEncodingException {
+		
+		String password = passwordHash (user.getPassword());
+		System.out.println(password);
+		
+		String endPwd = Base64.getEncoder().encodeToString(user.getPassword().getBytes("SHA-256"));
+		System.out.println(endPwd.toString());
+		
+		byte[] decodes = Base64.getDecoder().decode(endPwd);
+		String decoded = new String (decodes, "SHA-256");
+		System.out.println(decoded);
+
+		
+		
+		model.addAttribute("user", user);
+		session.setAttribute("usernames", user.getUsername());
+		session.setAttribute("user1", user);
+		return "view";
+	}
+	
+	@RequestMapping(value="/logout", method=POST)
+	public String logout(Model model, HttpSession session) {
+		session.removeAttribute("user1");
+		session.removeAttribute("usernames");
+		model.addAttribute("alertMsg", "You have successfully logout");
+		return "index";
+	}
+	
+	private String passwordHash(String password) {
+		String rPassword = null; 
+		try {
+			byte[] data1 = password.getBytes("UTF-8");
+			MessageDigest mD = MessageDigest.getInstance("SHA-256");
+			mD.update(data1);
+			byte[] digest = mD.digest();
+			rPassword = digest.toString();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return rPassword;
+	
+	}
+
+}

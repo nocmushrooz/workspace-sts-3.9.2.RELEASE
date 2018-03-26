@@ -1,0 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
+<%@ page import="com.fdmgroup.User.UserObj" %>
+<html>
+<head>
+<title>Spring Intro site</title>
+	<script type="text/javascript">
+	<% UserObj obj = (UserObj) request.getSession().getAttribute("user1"); %>
+	</script>
+</head>
+<body>
+
+	
+	<h1>Session welcome <%= session.getAttribute("usernames") %></h1>
+	<h1>Session welcome 1 <%= obj.getUsername() %></h1>
+	<div>
+		<p>UTF-8 Encoded: <%= session.getAttribute("encoded") %></p>
+		<p>UTF-8 Decoded: <%= session.getAttribute("decoded") %></p>
+		<p>AES Encrypted: <%= session.getAttribute("encrypted") %></p>
+		<p>AES Decrypted: <%= session.getAttribute("decrypted") %></p>
+	</div>
+	
+	<form action="logout" method="POST">
+		<input type="submit" id="logout" name="logout" value="Log Out"/>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+#Tomcat publish data
+#Fri Mar 23 13:04:28 SGT 2018
+org.eclipse.jst.jee.server\:SimpleSpringMVCExample=C\:\\Users\\wong3\\Downloads\\spring\\sts-bundle\\pivotal-tc-server-developer-3.2.8.RELEASE\\base-instance\\wtpwebapps\\SimpleSpringMVCExample
+org.eclipse.jst.j2ee.server\:/binary\:C\:\\Users\\wong3\\.m2\\repository\\org\\springframework\\spring-web\\4.3.10.RELEASE\\spring-web-4.3.10.RELEASE.jar=C\:\\Users\\wong3\\Downloads\\spring\\sts-bundle\\pivotal-tc-server-developer-3.2.8.RELEASE\\base-instance\\wtpwebapps\\PasswordHash\\WEB-INF\\lib\\spring-web-4.3.10.RELEASE.jar
+org.eclipse.jst.jee.server\:WebChatSystem=C\:\\Users\\wong3\\Downloads\\spring\\sts-bundle\\pivotal-tc-server-developer-3.2.8.RELEASE\\base-instance\\wtpwebapps\\WebChatSystem

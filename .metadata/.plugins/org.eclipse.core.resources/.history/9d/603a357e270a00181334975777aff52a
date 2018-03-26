@@ -1,0 +1,13 @@
+package Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Controller {
+
+	@Autowired
+	public void createNewUser(String username, String password) {
+		
+	};
+	
+	
+}

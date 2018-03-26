@@ -1,0 +1,23 @@
+package com.fdmgroup.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.fdmgroup.User.UserObj;
+
+
+@org.springframework.stereotype.Controller 
+public class UserController {
+	ApplicationContext appContext = new ClassPathXmlApplicationContext("context.xml");
+	
+	@Autowired
+	public void createNewUser(String username, String password) {
+		
+		UserObj userObj = appContext.getBean("UserObj", UserObj.class);
+		
+	};
+	
+	
+}

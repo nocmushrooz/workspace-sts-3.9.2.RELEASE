@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="SpringStartAnnotation"/>
+<aop-project name="spring1"/>
+<aop-project name="SpringMvcStepByStep"/>
+<aop-project name="PasswordHash"/>
+<aop-project name="SimpleSpringMVCExample"/>
+</aop-reference-model>

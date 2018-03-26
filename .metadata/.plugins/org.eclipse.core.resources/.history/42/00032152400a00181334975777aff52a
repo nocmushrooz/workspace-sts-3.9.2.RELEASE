@@ -1,0 +1,24 @@
+package com.fdmgroup.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.fdmgroup.User.UserObj;
+
+
+@Controller 
+public class UserController {
+	ApplicationContext appContext = new ClassPathXmlApplicationContext("context.xml");
+	
+	@RequestMapping (value ="/createNewUser")
+	public void createNewUser(String username, String password) {
+		
+		
+		
+	};
+	
+	
+}

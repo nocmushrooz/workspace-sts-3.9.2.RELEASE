@@ -1,0 +1,33 @@
+package com.fdmgroup.demos.springmvc;
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.fdmgroup.User.UserObj;
+
+
+@Controller
+public class DemoController {
+	
+	@RequestMapping(value="/")
+	public String indexPage(Model model){
+		return "index";
+	}
+
+	@RequestMapping(value="/login", method=POST)
+	public String homeHandler(Model model){
+		UserObj user = new UserObj();
+		model.addAttribute("userObj", user);
+		return "loginPage";
+	}
+
+	@RequestMapping(value="/submit", method=POST)
+	public String submitHandler(Model model, UserObj user){
+		model.addAttribute("user", user);
+		return "view";
+	}
+
+}

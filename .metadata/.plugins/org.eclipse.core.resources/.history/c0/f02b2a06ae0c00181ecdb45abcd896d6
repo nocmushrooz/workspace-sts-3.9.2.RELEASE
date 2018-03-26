@@ -1,0 +1,6 @@
+package com.fdmgroup.AESEncryptionDecryption;
+
+public class AESEncryptDecrypt {
+	private static final String algorithms = "AES";
+	private byte[] keyValue;
+}

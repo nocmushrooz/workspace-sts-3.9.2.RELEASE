@@ -1,0 +1,39 @@
+package com.fdmgroup.AESEncryptionDecryption;
+
+import java.security.Key;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+public class AESEncryptDecrypt {
+	private static final String algorithms = "AES";
+	private byte[] keyValue;
+	
+	public AESEncryptDecrypt(String key) {
+		keyValue = key.getBytes();
+	}
+	public Key generateKey() throws Exception{
+		Key key = new SecretKeySpec(keyValue, algorithms);
+		return key;
+	}
+	public String encryption(String password) throws Exception {
+		Key key = generateKey();
+		Cipher c = Cipher.getInstance(algorithms);
+		c.init(Cipher.ENCRYPT_MODE, key);
+		byte[] encryptedValue = c.doFinal(password.getBytes());
+		String eValue = new BASE64Encoder().encode(encryptedValue);
+		return eValue;
+	}
+	public String decrypt(String encryptedData) throws Exception{
+		Key key = generateKey();
+		Cipher c = Cipher.getInstance(algorithms);
+		c.init(Cipher.DECRYPT_MODE, key);
+		byte[] decodeValue = new BASE64Decoder().decodeBuffer(encryptedData);
+		byte[] deValue = c.doFinal(decodeValue);
+		String decryptedValue = new String(deValue);
+		return decryptedValue;
+	}
+}

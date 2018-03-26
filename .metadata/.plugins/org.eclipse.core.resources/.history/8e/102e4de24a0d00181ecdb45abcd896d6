@@ -1,0 +1,69 @@
+package com.fdmgroup.AsymmetricEncDec;
+
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.HashMap;
+
+import javax.crypto.Cipher;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+public class AsymmetricEncDec {
+
+	private static final String PUBLIC_KEY = "Public.key";
+	private static final String PRIVATE_KEY = "Private.key";
+	private static final String algo = "RSA";
+	private PublicKey publicKey;
+	private PrivateKey privateKey;
+	
+	public void generateKeys () {
+		try {
+			final KeyPairGenerator keyGen = KeyPairGenerator.getInstance(algo);
+			keyGen.initialize(1024);
+			final KeyPair key = keyGen.generateKeyPair();
+			publicKey = key.getPublic();
+			privateKey = key.getPrivate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public PublicKey getPublicKey() {
+		return publicKey;
+	}
+	
+	public PrivateKey getPrivateKey() {
+		return privateKey;
+	}
+	
+	public static String encrypt(String password, PublicKey key) {
+		byte[] cipherText = null;
+		String encrypted = null;
+		try {
+			final Cipher cipher = Cipher.getInstance(algo);
+			cipher.init(Cipher.ENCRYPT_MODE, key);
+			cipherText = cipher.doFinal(password.getBytes());
+			encrypted = new BASE64Encoder().encode(cipherText);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return encrypted;
+	}
+	
+	public static String decrypt(String encryptedPassword, PrivateKey key) {
+		byte[] decryptedText =null;
+		try {
+			final Cipher cipher = Cipher.getInstance(algo);
+			byte[] decodeValue = new BASE64Decoder().decodeBuffer(encryptedPassword);
+			cipher.init(Cipher.DECRYPT_MODE, key);
+			decryptedText = cipher.doFinal(decodeValue);
+			System.out.println(decryptedText.toString());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new String(decryptedText);
+	}
+}

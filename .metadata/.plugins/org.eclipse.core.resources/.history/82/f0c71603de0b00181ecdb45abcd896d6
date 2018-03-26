@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SimpleSpringMVCExample">
+        <property name="context-root" value="Spring_Web_MVC_Example_Application"/>
+        <property name="java-output-path" value="/SimpleSpringMVCExample/target/classes"/>
+    </wb-module>
+</project-modules>
